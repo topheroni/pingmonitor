@@ -33,13 +33,13 @@ def main(
             output = subprocess.check_output(
                 ["ping", flag, "1", host], stderr=subprocess.STDOUT
             ).decode()
-            ping_time_match = expr.search(output)[0]
-            ping_time = int(ping_time_match.split("=")[1].replace("ms", ""))
-            ping_timestamps.append(timestamp)
-            ping_values.append(ping_time)
+            ping_time_match = expr.search(output)
+            if ping_time_match:
+                ping_time = int(ping_time_match[0].split("=")[1].replace("ms", ""))
+                ping_timestamps.append(timestamp)
+                ping_values.append(ping_time)
         except (subprocess.CalledProcessError, TypeError):
             logging.error("Host potentially unreachable.")
-        print(ping_time)
         count += 1
         if count == amount:
             break
