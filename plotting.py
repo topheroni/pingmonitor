@@ -1,13 +1,8 @@
-import random
 from datetime import datetime as dt
-from datetime import timedelta
 
 import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
-import numpy as np
 
-# formats = ["", "%Y", "%Y-%b", "%Y-%b-%d", "%H:%M", "%H:%M:%S"]
-# offset_formats = ["", "%Y", "%Y-%b", "%Y-%b-%d", "%Y-%b-%d", "%Y-%b-%d"]
 THRESHOLD_YELLOW = 50
 THRESHOLD_RED = 150
 
@@ -23,9 +18,6 @@ def make_plot(
         timestamps (list[str]): list of timestamps
         values (list[int]): list of corresponding ping values
     """
-    # r_amount = 200
-    # values = random.choices(range(350), k=r_amount)
-    # timestamps = [dt.now() + timedelta(seconds=i) for i in range(r_amount)]
     x_floats = mdates.date2num(timestamps)
     xmin = x_floats[0]
     xmax = x_floats[-1]
